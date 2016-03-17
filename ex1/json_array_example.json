@@ -1,0 +1,5 @@
+{"array":[1,
+"two",
+{"object inside array?":"yes",
+"empty array":[]
+}, {"first":123, "arr":[1,2,"3",{"elem":"nice", "newArr":[[[[[1]]]]]}]}]}
