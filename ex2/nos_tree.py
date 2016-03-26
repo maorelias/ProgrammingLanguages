@@ -59,6 +59,19 @@ def nos_tree(S, s):
         premises = ()
         post_state = s
 
+    elif type(S) is Repeat:
+        sp, t1 = nos_tree(S.S, s)
+        if(eval_bool_expr(S.b, sp) == tt):
+            rule = 'repeat_tt'
+            post_state = sp
+            premises = (t1,)
+        else:
+            rule = 'repeat_ff'
+            spp, t2 = nos_tree(S,sp)
+            post_state = spp
+            premises = (t1,t2)
+        
+
     else:
         assert False # Error
 
@@ -89,6 +102,17 @@ if __name__ == '__main__':
 
     
     s, tree = nos_tree(euclid_prog, {})
+    print s
+    print
+    print tree
+    print
+    view_tree(tree)
+
+    repeat_prog = Repeat(Comp(Assign('a',Times(Var('a'),ALit(4))),
+                              Assign('b',Minus(Var('b'),ALit(1)))),
+                         LE(Var('b'),ALit(0)))
+
+    s, tree = nos_tree(repeat_prog, {'a':6, 'b':2})
     print s
     print
     print tree
