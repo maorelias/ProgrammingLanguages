@@ -49,6 +49,9 @@ def sos(S, s):
     elif type(S) is While:
         return (If(S.b, Comp(S.S, While(S.b, S.S)), Skip()), s)
 
+    elif type(S) is Repeat:
+        return (Comp(S.S, If(S.b, Skip(), S)),s)
+
     else:
         assert False # Error
 
@@ -83,6 +86,13 @@ if __name__ == '__main__':
                                             Assign('a', Var('t')))))))
 
     run_sos(euclid_prog, {})
+
+    
+    repeat_prog = Repeat(Comp(Assign('a',Times(Var('a'),ALit(4))),
+                       Assign('b',Minus(Var('b'),ALit(1)))),
+                  LE(Var('b'),ALit(0)))
+
+    run_sos(repeat_prog, {'a': 6, 'b' : 2})
                                             
                             
 
