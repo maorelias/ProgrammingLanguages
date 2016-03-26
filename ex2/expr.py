@@ -60,25 +60,50 @@ def eval_bool_expr(e, s):
     """
 
     if type(e) is BLit:
-        return e.value
+        return python_bool_to_while_bool(e.value)
 
     elif type(e) is Eq:
-        return eval_arith_expr(e.a1, s) == eval_arith_expr(e.a2, s)
+        return python_bool_to_while_bool(eval_arith_expr(e.a1, s) == eval_arith_expr(e.a2, s))
 
     elif type(e) is LE:
-        return eval_arith_expr(e.a1, s) <= eval_arith_expr(e.a2, s)
+        return python_bool_to_while_bool(eval_arith_expr(e.a1, s) <= eval_arith_expr(e.a2, s))
 
     elif type(e) is Not:
-        return not eval_bool_expr(e.b, s)
+        return negate(eval_bool_expr(e.b, s))
 
     elif type(e) is And:
-        return eval_bool_expr(e.b1, s) and eval_bool_expr(e.b2, s)
+        return and_operand(eval_bool_expr(e.b1, s),eval_bool_expr(e.b2, s))
 
     elif type(e) is Or:
-        return eval_bool_expr(e.b1, s) or eval_bool_expr(e.b2, s)
+        return or_operand(eval_bool_expr(e.b1, s),eval_bool_expr(e.b2, s))
 
     else:
         assert False # Error
+
+def python_bool_to_while_bool(b):
+    if(b == True):
+        return tt;
+
+    return ff
+
+def negate(b):
+    if(b == tt):
+        return ff;
+
+    return tt;
+
+def and_operand(b1,b2):
+    if(b1 == tt and b2 == tt):
+        return tt;
+
+    return ff;
+
+def or_operand(b1,b2):
+    if(b1 == tt or b2 == tt):
+        return tt;
+
+    return ff;
+
 
 
 if __name__ == '__main__':

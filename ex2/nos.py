@@ -34,20 +34,20 @@ def nos(S, s):
         spp = nos(S.S2, sp)
         return spp
 
-    elif type(S) is If and eval_bool_expr(S.b, s) is True:
+    elif type(S) is If and eval_bool_expr(S.b, s) == tt:
         sp = nos(S.S1, s)
         return sp
 
-    elif type(S) is If and eval_bool_expr(S.b, s) is False:
+    elif type(S) is If and eval_bool_expr(S.b, s) == ff:
         sp = nos(S.S2, s)
         return sp
 
-    elif type(S) is While and eval_bool_expr(S.b, s) is True:
+    elif type(S) is While and eval_bool_expr(S.b, s) == tt:
         sp = nos(S.S, s)
         spp = nos(While(S.b, S.S), sp)
         return spp
 
-    elif type(S) is While and eval_bool_expr(S.b, s) is False:
+    elif type(S) is While and eval_bool_expr(S.b, s) == ff:
         return s
 
     else:

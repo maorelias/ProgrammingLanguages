@@ -40,10 +40,10 @@ def sos(S, s):
             sp = gamma
             return (S.S2, sp)
 
-    elif type(S) is If and eval_bool_expr(S.b, s) is True:
+    elif type(S) is If and eval_bool_expr(S.b, s) == tt:
         return (S.S1, s)
 
-    elif type(S) is If and eval_bool_expr(S.b, s) is False:
+    elif type(S) is If and eval_bool_expr(S.b, s) == ff:
         return (S.S2, s)
 
     elif type(S) is While:
