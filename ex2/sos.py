@@ -75,6 +75,17 @@ if __name__ == '__main__':
 
     run_sos(prog, {'x': 5})
 
+    euclid_prog = Comp(Assign('a',ALit(84)),
+                       Comp(Assign('b',ALit(30)),
+                            While(Not(Eq(Var('b'), ALit(0))),
+                                  Comp(Assign('t', Var('b')),
+                                       Comp(Assign('b', Mod(Var('a'),Var('b'))),
+                                            Assign('a', Var('t')))))))
+
+    run_sos(euclid_prog, {})
+                                            
+                            
+
     #
     # --- ADD MORE TESTS HERE ---
     #

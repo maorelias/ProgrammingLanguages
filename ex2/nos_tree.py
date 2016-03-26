@@ -80,6 +80,22 @@ if __name__ == '__main__':
     print
     view_tree(tree)
 
+    euclid_prog = Comp(Assign('a',ALit(84)),
+                       Comp(Assign('b',ALit(30)),
+                            While(Not(Eq(Var('b'), ALit(0))),
+                                  Comp(Assign('t', Var('b')),
+                                       Comp(Assign('b', Mod(Var('a'),Var('b'))),
+                                            Assign('a', Var('t')))))))
+
+    
+    s, tree = nos_tree(euclid_prog, {})
+    print s
+    print
+    print tree
+    print
+    view_tree(tree)
+
+
     #
     # --- ADD MORE TESTS HERE ---
     #

@@ -1,0 +1,101 @@
+{'y': 120, 'x': 1}
+
+("<y := 1 ; while (Not(Eq(x, 1))) do (y := Times(y, x) ; x := Minus(x, 1)), {'x': 5}> --> {'y': 120, 'x': 1}\n[comp]", (("<y := 1, {'x': 5}> --> {'y': 1, 'x': 5}\n[ass]", ()), ("<while (Not(Eq(x, 1))) do (y := Times(y, x) ; x := Minus(x, 1)), {'y': 1, 'x': 5}> --> {'y': 120, 'x': 1}\n[while_tt]", (("<y := Times(y, x) ; x := Minus(x, 1), {'y': 1, 'x': 5}> --> {'y': 5, 'x': 4}\n[comp]", (("<y := Times(y, x), {'y': 1, 'x': 5}> --> {'y': 5, 'x': 5}\n[ass]", ()), ("<x := Minus(x, 1), {'y': 5, 'x': 5}> --> {'y': 5, 'x': 4}\n[ass]", ()))), ("<while (Not(Eq(x, 1))) do (y := Times(y, x) ; x := Minus(x, 1)), {'y': 5, 'x': 4}> --> {'y': 120, 'x': 1}\n[while_tt]", (("<y := Times(y, x) ; x := Minus(x, 1), {'y': 5, 'x': 4}> --> {'y': 20, 'x': 3}\n[comp]", (("<y := Times(y, x), {'y': 5, 'x': 4}> --> {'y': 20, 'x': 4}\n[ass]", ()), ("<x := Minus(x, 1), {'y': 20, 'x': 4}> --> {'y': 20, 'x': 3}\n[ass]", ()))), ("<while (Not(Eq(x, 1))) do (y := Times(y, x) ; x := Minus(x, 1)), {'y': 20, 'x': 3}> --> {'y': 120, 'x': 1}\n[while_tt]", (("<y := Times(y, x) ; x := Minus(x, 1), {'y': 20, 'x': 3}> --> {'y': 60, 'x': 2}\n[comp]", (("<y := Times(y, x), {'y': 20, 'x': 3}> --> {'y': 60, 'x': 3}\n[ass]", ()), ("<x := Minus(x, 1), {'y': 60, 'x': 3}> --> {'y': 60, 'x': 2}\n[ass]", ()))), ("<while (Not(Eq(x, 1))) do (y := Times(y, x) ; x := Minus(x, 1)), {'y': 60, 'x': 2}> --> {'y': 120, 'x': 1}\n[while_tt]", (("<y := Times(y, x) ; x := Minus(x, 1), {'y': 60, 'x': 2}> --> {'y': 120, 'x': 1}\n[comp]", (("<y := Times(y, x), {'y': 60, 'x': 2}> --> {'y': 120, 'x': 2}\n[ass]", ()), ("<x := Minus(x, 1), {'y': 120, 'x': 2}> --> {'y': 120, 'x': 1}\n[ass]", ()))), ("<while (Not(Eq(x, 1))) do (y := Times(y, x) ; x := Minus(x, 1)), {'y': 120, 'x': 1}> --> {'y': 120, 'x': 1}\n[while_ff]", ())))))))))))
+
+Graphviz not available, the tree in dot format is (you can render online at http://www.webgraphviz.com):
+
+digraph G {
+    0 [label="<y := 1 ; while (Not(Eq(x, 1))) do (y := Times(y, x) ; x := Minus(x, 1)), {'x': 5}> --> {'y': 120, 'x': 1}\n[comp]"];
+    1 [label="<y := 1, {'x': 5}> --> {'y': 1, 'x': 5}\n[ass]"];
+    2 [label="<while (Not(Eq(x, 1))) do (y := Times(y, x) ; x := Minus(x, 1)), {'y': 1, 'x': 5}> --> {'y': 120, 'x': 1}\n[while_tt]"];
+    3 [label="<y := Times(y, x) ; x := Minus(x, 1), {'y': 1, 'x': 5}> --> {'y': 5, 'x': 4}\n[comp]"];
+    4 [label="<y := Times(y, x), {'y': 1, 'x': 5}> --> {'y': 5, 'x': 5}\n[ass]"];
+    5 [label="<x := Minus(x, 1), {'y': 5, 'x': 5}> --> {'y': 5, 'x': 4}\n[ass]"];
+    6 [label="<while (Not(Eq(x, 1))) do (y := Times(y, x) ; x := Minus(x, 1)), {'y': 5, 'x': 4}> --> {'y': 120, 'x': 1}\n[while_tt]"];
+    7 [label="<y := Times(y, x) ; x := Minus(x, 1), {'y': 5, 'x': 4}> --> {'y': 20, 'x': 3}\n[comp]"];
+    8 [label="<y := Times(y, x), {'y': 5, 'x': 4}> --> {'y': 20, 'x': 4}\n[ass]"];
+    9 [label="<x := Minus(x, 1), {'y': 20, 'x': 4}> --> {'y': 20, 'x': 3}\n[ass]"];
+    10 [label="<while (Not(Eq(x, 1))) do (y := Times(y, x) ; x := Minus(x, 1)), {'y': 20, 'x': 3}> --> {'y': 120, 'x': 1}\n[while_tt]"];
+    11 [label="<y := Times(y, x) ; x := Minus(x, 1), {'y': 20, 'x': 3}> --> {'y': 60, 'x': 2}\n[comp]"];
+    12 [label="<y := Times(y, x), {'y': 20, 'x': 3}> --> {'y': 60, 'x': 3}\n[ass]"];
+    13 [label="<x := Minus(x, 1), {'y': 60, 'x': 3}> --> {'y': 60, 'x': 2}\n[ass]"];
+    14 [label="<while (Not(Eq(x, 1))) do (y := Times(y, x) ; x := Minus(x, 1)), {'y': 60, 'x': 2}> --> {'y': 120, 'x': 1}\n[while_tt]"];
+    15 [label="<y := Times(y, x) ; x := Minus(x, 1), {'y': 60, 'x': 2}> --> {'y': 120, 'x': 1}\n[comp]"];
+    16 [label="<y := Times(y, x), {'y': 60, 'x': 2}> --> {'y': 120, 'x': 2}\n[ass]"];
+    17 [label="<x := Minus(x, 1), {'y': 120, 'x': 2}> --> {'y': 120, 'x': 1}\n[ass]"];
+    18 [label="<while (Not(Eq(x, 1))) do (y := Times(y, x) ; x := Minus(x, 1)), {'y': 120, 'x': 1}> --> {'y': 120, 'x': 1}\n[while_ff]"];
+
+    3 -> 4;
+    3 -> 5;
+    7 -> 8;
+    7 -> 9;
+    11 -> 12;
+    11 -> 13;
+    15 -> 16;
+    15 -> 17;
+    14 -> 15;
+    14 -> 18;
+    10 -> 11;
+    10 -> 14;
+    6 -> 7;
+    6 -> 10;
+    2 -> 3;
+    2 -> 6;
+    0 -> 1;
+    0 -> 2;
+}
+
+{'a': 6, 'b': 0, 't': 6}
+
+("<a := 84 ; b := 30 ; while (Not(Eq(b, 0))) do (t := b ; b := Mod(a,b) ; a := t), {}> --> {'a': 6, 'b': 0, 't': 6}\n[comp]", (("<a := 84, {}> --> {'a': 84}\n[ass]", ()), ("<b := 30 ; while (Not(Eq(b, 0))) do (t := b ; b := Mod(a,b) ; a := t), {'a': 84}> --> {'a': 6, 'b': 0, 't': 6}\n[comp]", (("<b := 30, {'a': 84}> --> {'a': 84, 'b': 30}\n[ass]", ()), ("<while (Not(Eq(b, 0))) do (t := b ; b := Mod(a,b) ; a := t), {'a': 84, 'b': 30}> --> {'a': 6, 'b': 0, 't': 6}\n[while_tt]", (("<t := b ; b := Mod(a,b) ; a := t, {'a': 84, 'b': 30}> --> {'a': 30, 'b': 24, 't': 30}\n[comp]", (("<t := b, {'a': 84, 'b': 30}> --> {'a': 84, 'b': 30, 't': 30}\n[ass]", ()), ("<b := Mod(a,b) ; a := t, {'a': 84, 'b': 30, 't': 30}> --> {'a': 30, 'b': 24, 't': 30}\n[comp]", (("<b := Mod(a,b), {'a': 84, 'b': 30, 't': 30}> --> {'a': 84, 'b': 24, 't': 30}\n[ass]", ()), ("<a := t, {'a': 84, 'b': 24, 't': 30}> --> {'a': 30, 'b': 24, 't': 30}\n[ass]", ()))))), ("<while (Not(Eq(b, 0))) do (t := b ; b := Mod(a,b) ; a := t), {'a': 30, 'b': 24, 't': 30}> --> {'a': 6, 'b': 0, 't': 6}\n[while_tt]", (("<t := b ; b := Mod(a,b) ; a := t, {'a': 30, 'b': 24, 't': 30}> --> {'a': 24, 'b': 6, 't': 24}\n[comp]", (("<t := b, {'a': 30, 'b': 24, 't': 30}> --> {'a': 30, 'b': 24, 't': 24}\n[ass]", ()), ("<b := Mod(a,b) ; a := t, {'a': 30, 'b': 24, 't': 24}> --> {'a': 24, 'b': 6, 't': 24}\n[comp]", (("<b := Mod(a,b), {'a': 30, 'b': 24, 't': 24}> --> {'a': 30, 'b': 6, 't': 24}\n[ass]", ()), ("<a := t, {'a': 30, 'b': 6, 't': 24}> --> {'a': 24, 'b': 6, 't': 24}\n[ass]", ()))))), ("<while (Not(Eq(b, 0))) do (t := b ; b := Mod(a,b) ; a := t), {'a': 24, 'b': 6, 't': 24}> --> {'a': 6, 'b': 0, 't': 6}\n[while_tt]", (("<t := b ; b := Mod(a,b) ; a := t, {'a': 24, 'b': 6, 't': 24}> --> {'a': 6, 'b': 0, 't': 6}\n[comp]", (("<t := b, {'a': 24, 'b': 6, 't': 24}> --> {'a': 24, 'b': 6, 't': 6}\n[ass]", ()), ("<b := Mod(a,b) ; a := t, {'a': 24, 'b': 6, 't': 6}> --> {'a': 6, 'b': 0, 't': 6}\n[comp]", (("<b := Mod(a,b), {'a': 24, 'b': 6, 't': 6}> --> {'a': 24, 'b': 0, 't': 6}\n[ass]", ()), ("<a := t, {'a': 24, 'b': 0, 't': 6}> --> {'a': 6, 'b': 0, 't': 6}\n[ass]", ()))))), ("<while (Not(Eq(b, 0))) do (t := b ; b := Mod(a,b) ; a := t), {'a': 6, 'b': 0, 't': 6}> --> {'a': 6, 'b': 0, 't': 6}\n[while_ff]", ())))))))))))
+
+Graphviz not available, the tree in dot format is (you can render online at http://www.webgraphviz.com):
+
+digraph G {
+    0 [label="<a := 84 ; b := 30 ; while (Not(Eq(b, 0))) do (t := b ; b := Mod(a,b) ; a := t), {}> --> {'a': 6, 'b': 0, 't': 6}\n[comp]"];
+    1 [label="<a := 84, {}> --> {'a': 84}\n[ass]"];
+    2 [label="<b := 30 ; while (Not(Eq(b, 0))) do (t := b ; b := Mod(a,b) ; a := t), {'a': 84}> --> {'a': 6, 'b': 0, 't': 6}\n[comp]"];
+    3 [label="<b := 30, {'a': 84}> --> {'a': 84, 'b': 30}\n[ass]"];
+    4 [label="<while (Not(Eq(b, 0))) do (t := b ; b := Mod(a,b) ; a := t), {'a': 84, 'b': 30}> --> {'a': 6, 'b': 0, 't': 6}\n[while_tt]"];
+    5 [label="<t := b ; b := Mod(a,b) ; a := t, {'a': 84, 'b': 30}> --> {'a': 30, 'b': 24, 't': 30}\n[comp]"];
+    6 [label="<t := b, {'a': 84, 'b': 30}> --> {'a': 84, 'b': 30, 't': 30}\n[ass]"];
+    7 [label="<b := Mod(a,b) ; a := t, {'a': 84, 'b': 30, 't': 30}> --> {'a': 30, 'b': 24, 't': 30}\n[comp]"];
+    8 [label="<b := Mod(a,b), {'a': 84, 'b': 30, 't': 30}> --> {'a': 84, 'b': 24, 't': 30}\n[ass]"];
+    9 [label="<a := t, {'a': 84, 'b': 24, 't': 30}> --> {'a': 30, 'b': 24, 't': 30}\n[ass]"];
+    10 [label="<while (Not(Eq(b, 0))) do (t := b ; b := Mod(a,b) ; a := t), {'a': 30, 'b': 24, 't': 30}> --> {'a': 6, 'b': 0, 't': 6}\n[while_tt]"];
+    11 [label="<t := b ; b := Mod(a,b) ; a := t, {'a': 30, 'b': 24, 't': 30}> --> {'a': 24, 'b': 6, 't': 24}\n[comp]"];
+    12 [label="<t := b, {'a': 30, 'b': 24, 't': 30}> --> {'a': 30, 'b': 24, 't': 24}\n[ass]"];
+    13 [label="<b := Mod(a,b) ; a := t, {'a': 30, 'b': 24, 't': 24}> --> {'a': 24, 'b': 6, 't': 24}\n[comp]"];
+    14 [label="<b := Mod(a,b), {'a': 30, 'b': 24, 't': 24}> --> {'a': 30, 'b': 6, 't': 24}\n[ass]"];
+    15 [label="<a := t, {'a': 30, 'b': 6, 't': 24}> --> {'a': 24, 'b': 6, 't': 24}\n[ass]"];
+    16 [label="<while (Not(Eq(b, 0))) do (t := b ; b := Mod(a,b) ; a := t), {'a': 24, 'b': 6, 't': 24}> --> {'a': 6, 'b': 0, 't': 6}\n[while_tt]"];
+    17 [label="<t := b ; b := Mod(a,b) ; a := t, {'a': 24, 'b': 6, 't': 24}> --> {'a': 6, 'b': 0, 't': 6}\n[comp]"];
+    18 [label="<t := b, {'a': 24, 'b': 6, 't': 24}> --> {'a': 24, 'b': 6, 't': 6}\n[ass]"];
+    19 [label="<b := Mod(a,b) ; a := t, {'a': 24, 'b': 6, 't': 6}> --> {'a': 6, 'b': 0, 't': 6}\n[comp]"];
+    20 [label="<b := Mod(a,b), {'a': 24, 'b': 6, 't': 6}> --> {'a': 24, 'b': 0, 't': 6}\n[ass]"];
+    21 [label="<a := t, {'a': 24, 'b': 0, 't': 6}> --> {'a': 6, 'b': 0, 't': 6}\n[ass]"];
+    22 [label="<while (Not(Eq(b, 0))) do (t := b ; b := Mod(a,b) ; a := t), {'a': 6, 'b': 0, 't': 6}> --> {'a': 6, 'b': 0, 't': 6}\n[while_ff]"];
+
+    7 -> 8;
+    7 -> 9;
+    5 -> 6;
+    5 -> 7;
+    13 -> 14;
+    13 -> 15;
+    11 -> 12;
+    11 -> 13;
+    19 -> 20;
+    19 -> 21;
+    17 -> 18;
+    17 -> 19;
+    16 -> 17;
+    16 -> 22;
+    10 -> 11;
+    10 -> 16;
+    4 -> 5;
+    4 -> 10;
+    2 -> 3;
+    2 -> 4;
+    0 -> 1;
+    0 -> 2;
+}
