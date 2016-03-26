@@ -110,6 +110,20 @@ class Minus(ArithExpr):
     def __repr__(self):
         return 'Minus({}, {})'.format(self.a1, self.a2)
 
+class Div(ArithExpr):
+    def __init__(self,a1,a2):
+        self.a1 = a1
+        self.a2 = a2
+    def __repr__(self):
+        return 'Div({},{})'.format(self.a1,self.a2)
+
+class Mod(ArithExpr):
+    def __init__(self,a1,a2):
+        self.a1 = a1
+        self.a2 = a2
+    def __repr__(self):
+        return 'Mod({},{})'.format(self.a1,self.a2)
+
 #
 # --- ADD HERE IN QUESTION 1 ---
 #

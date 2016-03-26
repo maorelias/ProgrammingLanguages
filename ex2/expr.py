@@ -39,6 +39,12 @@ def eval_arith_expr(e, s):
     elif type(e) is Minus:
         return eval_arith_expr(e.a1, s) - eval_arith_expr(e.a2, s)
 
+    elif type(e) is Div:
+        return eval_arith_expr(e.a1, s) / eval_arith_expr(e.a2, s)
+
+    elif type(e) is Mod:
+        return eval_arith_expr(e.a1, s) % eval_arith_expr(e.a2, s)
+
     else:
         assert False # Error
 
