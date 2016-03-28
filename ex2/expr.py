@@ -40,9 +40,13 @@ def eval_arith_expr(e, s):
         return eval_arith_expr(e.a1, s) - eval_arith_expr(e.a2, s)
 
     elif type(e) is Div:
+        if eval_arith_expr(e.a2, s) == 0:
+            assert False  # division by zero
         return eval_arith_expr(e.a1, s) / eval_arith_expr(e.a2, s)
 
     elif type(e) is Mod:
+        if eval_arith_expr(e.a2, s) == 0:
+            assert False  # modulo zero
         return eval_arith_expr(e.a1, s) % eval_arith_expr(e.a2, s)
 
     else:
