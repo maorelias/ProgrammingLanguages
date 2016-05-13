@@ -36,14 +36,14 @@ let rec substitute (x:string) t1 t2 =
   | Variable y when x = y -> t1
   | Variable y -> Variable y
   | Application (term1, term2) -> Application ((substitute x t1 term1), (substitute x t1 term2))
-  | Abstraction (y, term) when x = y -> Abstraction (x, term)
-  | Abstraction (y, term) -> let fv_t1 = fv t1 in(
-                            if StringSet.mem y fv_t1 then( 
-                               let fv_term = fv term in
-                               let vset = StringSet.add x (StringSet.union fv_t1 fv_term) in
-                               let z = fresh_var vset
-			       in Abstraction (z, (substitute x t1 (substitute y (Variable z) term)))    
-			    )
-			    else Abstraction (y, (substitute x t1 term))
-			   
-  )
+  | Abstraction (y, t) when x = y -> Abstraction (x, t)
+  | Abstraction (y, t) ->
+    let fv_t1 = fv t1 in(
+      if StringSet.mem y fv_t1 then( 
+        let fv_t = fv t in
+          let vset = StringSet.add x (StringSet.union fv_t1 fv_t) in
+            let z = fresh_var vset in 
+			  Abstraction (z, (substitute x t1 (substitute y (Variable z) t)))    
+	  )
+	  else Abstraction (y, (substitute x t1 term))
+    )
