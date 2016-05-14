@@ -45,7 +45,7 @@ let rec substitute (x:string) t1 t2 =
             let z = fresh_var vset in 
 			  Abstraction (z, (substitute x t1 (substitute y (Variable z) t)))    
 	  )
-	  else Abstraction (y, (substitute x t1 term))
+	  else Abstraction (y, (substitute x t1 t))
     )
 		
 let reduce_strict term = function
