@@ -50,8 +50,6 @@ let rec substitute (x:string) t1 t2 =
 	
 	
 let reduce_strict term = function
-	| Variable var -> None
-	| Abstraction(x,y) -> None
 	| Application(t1,t2) -> let t1' = reduce_strict t1 in (
 			match t1' with
 			| Some t1'' -> Some(Application(t1'',t2))
@@ -63,6 +61,16 @@ let reduce_strict term = function
 			| _ -> None
 			))
 	)
+	| _ -> None
 							
-							
+			
+let reduce_lazy term = function
+	| Application(t1,t2) -> let t1' = reduce_lazy t1 in (
+			match t1' with
+			| Some t1'' -> Some(Application(t1'',t2))
+			| None -> match t1 with
+					| Abstraction(x,term1) -> Some(substitute x t2 term1)
+					| _ -> None
+	)
+	| _ -> None
 
