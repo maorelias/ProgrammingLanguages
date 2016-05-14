@@ -73,7 +73,13 @@ let rec reduce_lazy = function
 	)
 	| _ -> None
 	
-let rec reduce_normal = function	
+let rec reduce_normal = function
+	| Variable v -> None
+	| Abstraction(x, term_1) -> let term_1' = reduce_normal term_1 in(
+								match term_1' with
+								| Some term_1'' -> Some(Abstraction(x, term_1''))
+								| None -> None			
+								)
 	| Application(t1,t2) -> match t1 with
 							| Abstraction(x, term1) -> Some(substitute x t2 term1)
 							| _ -> let t1' = reduce_normal t1 in(
@@ -83,11 +89,7 @@ let rec reduce_normal = function
 							match t2' with
 							| Some t2'' -> Some(Application(t1,t2''))
 							| None -> None
-							))
-	| Abstraction(x, term_1) -> let term_1' = reduce_normal term_1 in(
-								match term_1' with
-								| Some term_1'' -> Some(Abstraction(x, term_1''))
-								| None -> None			
-								)
-	| _ -> None
+							)
+							)
+
 
