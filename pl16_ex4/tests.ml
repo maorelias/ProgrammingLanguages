@@ -102,7 +102,7 @@ let test ~verbose ~sem ~reduce s =
   let result = (evaluate ~verbose reduce (parse s)) in
   printf "Result is: %s\n\n" (format_term result)
 
-  (*
+  
 let test_lazy = test ~sem:"lazy" ~reduce:reduce_lazy
 let test_strict = test ~sem:"strict" ~reduce:reduce_strict
 let test_normal = test ~sem:"normal-order" ~reduce:reduce_normal
@@ -110,7 +110,7 @@ let test_all ~verbose s =
   test_lazy ~verbose s;
   test_strict ~verbose s;
   test_normal ~verbose s
-*)
+
 
 let () =
 
@@ -134,9 +134,9 @@ let () =
           printf "Parsed term\n:%s\n" (print_term (t));
           printf "Reformating term to string format:\n";
           printf "%s\n\n" (format_term (t));
-		  call_parse_term l1 in call_parse_term l
+		  call_parse_term l1 in call_parse_term l;
 	
-  (*
+  
   test_all ~verbose:true test_and_1;
   test_all ~verbose:true test_and_2;
 
@@ -144,4 +144,4 @@ let () =
   test_strict ~verbose:false test_fact_s;
   test_normal ~verbose:false test_fact_l;
   test_normal ~verbose:false test_fact_s
-  *)
+  
