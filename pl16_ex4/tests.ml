@@ -100,8 +100,8 @@ let testQ6_EAbs = "(\\x.((\\y.y)t))"
 let testQ6_EApp1 = "let a = ((\\x. y)(\\w. z)) in (a u)"
 let testQ6_EAppAbs = "((\\x. (x x))(\\y. y))"
 
-let testQ7_EApp2 = "(x ((\\y. y)t))"
-let testQ7_EAbs = "(\\x.((\\y.y)t))"
+let testQ7_EApp2 = "(x ((\\y. (y y))t))"
+let testQ7_EAbs = "(\\x.((\\y.y)((\\z.z)t)))"
 let testQ7_EApp1 = "let a = ((\\x. y)(\\w. z)) in (a u)"
 let testQ7_EAppAbs = "((\\x. (x x))(\\y. y))"
 
