@@ -100,6 +100,11 @@ let testQ6_EAbs = "(\\x.((\\y.y)t))"
 let testQ6_EApp1 = "let a = ((\\x. y)(\\w. z)) in (a u)"
 let testQ6_EAppAbs = "((\\x. (x x))(\\y. y))"
 
+let testQ7_EApp2 = "(x ((\\y. y)t))"
+let testQ7_EAbs = "(\\x.((\\y.y)t))"
+let testQ7_EApp1 = "let a = ((\\x. y)(\\w. z)) in (a u)"
+let testQ7_EAppAbs = "((\\x. (x x))(\\y. y))"
+
 let rec print_term = function
   | Variable id -> "Variable(" ^ id ^ ")"
   | Abstraction (a,b) -> "Abs(" ^ a ^ ", " ^ print_term b ^ ")"
@@ -150,6 +155,7 @@ let () =
 
   test_lazy ~verbose:false test_fact_l;
   test_strict ~verbose:false test_fact_s;
+  
   printf "\nTesting Question 5 - E-App1:\n";
   test_strict ~verbose:true testQ5_EApp1;
   printf "\nTesting Question 5 - E-App2:\n";
@@ -158,6 +164,7 @@ let () =
   test_strict ~verbose:true testQ5_EAppAbs;
   printf "\nTesting Question 5 - E-Abs:\n";
   test_strict ~verbose:true testQ5_EAbs;
+  
   printf "\nTesting Question 6 - E-App1:\n";
   test_lazy ~verbose:true testQ6_EApp1;
   printf "\nTesting Question 6 - E-App2:\n";
@@ -166,6 +173,16 @@ let () =
   test_lazy ~verbose:true testQ6_EAppAbs;
   printf "\nTesting Question 6 - E-Abs:\n";
   test_lazy ~verbose:true testQ6_EAbs;
+  
+  printf "\nTesting Question 7 - E-App1:\n";
+  test_normal ~verbose:true testQ7_EApp1;
+  printf "\nTesting Question 7 - E-App2:\n";
+  test_normal ~verbose:true testQ7_EApp2;
+  printf "\nTesting Question 7 - E-AppAbs:\n";
+  test_normal ~verbose:true testQ7_EAppAbs;
+  printf "\nTesting Question 7 - E-Abs:\n";
+  test_normal ~verbose:true testQ7_EAbs;
+  
   test_normal ~verbose:false test_fact_l;
   test_normal ~verbose:false test_fact_s
   
