@@ -48,7 +48,7 @@ let rec substitute (x:string) t1 t2 =
 	  else Abstraction (y, (substitute x t1 t))
     )
 		
-let rec reduce_strict term = function
+let rec reduce_strict = function
 	| Application(t1,t2) -> let t1' = reduce_strict t1 in (
 			match t1' with
 			| Some t1'' -> Some(Application(t1'',t2))
@@ -56,13 +56,14 @@ let rec reduce_strict term = function
 			match t2' with
 			| Some t2'' -> Some(Application(t1,t2''))
 			| None -> match t1 with
-			| Abstraction(x,term_3) -> Some(substitute x t2 term_3)
-			| _ -> None
+					| Abstraction(x,term_3) -> Some(substitute x t2 term_3)
+					| _ -> None
 			))
 	| _ -> None
+	
 							
 			
-let rec reduce_lazy term = function
+let rec reduce_lazy = function
 	| Application(t1,t2) -> let t1' = reduce_lazy t1 in (
 			match t1' with
 			| Some t1'' -> Some(Application(t1'',t2))
@@ -72,7 +73,7 @@ let rec reduce_lazy term = function
 	)
 	| _ -> None
 	
-let rec reduce_normal term = function	
+let rec reduce_normal = function	
 	| Application(t1,t2) -> match t1 with
 							| Abstraction(x, term1) -> Some(substitute x t2 term1)
 							| _ -> let t1' = reduce_normal t1 in(
@@ -85,7 +86,7 @@ let rec reduce_normal term = function
 							))
 	| Abstraction(x, term_1) -> let term_1' = reduce_normal term_1 in(
 								match term_1' with
-								| Some term_1'' -> Abstraction(x, term_1'')
+								| Some term_1'' -> Some(Abstraction(x, term_1''))
 								| None -> None			
 								)
 	| _ -> None
