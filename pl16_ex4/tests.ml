@@ -90,7 +90,9 @@ let and = (\\b.(\\c. ((b c) fls))) in
 let testQ1_3 = "y"
 let testQ1_4 = "y\n(\\x. x)((\\y. y)(\\z. z))z\nlet x = (\\x. x) in ((\\y. y) (\\z. x))"
 
-
+let testQ5_EApp1 = "let a = ((\\x. y)(\\w. z)) in (a u)"
+let testQ5_EAppAbs = "((\\x. (x x))(\\y. y))"
+let testQ5_EApp2 = "((\\x. x)((\\y. y)t))"
 
 let rec print_term = function
   | Variable id -> "Variable(" ^ id ^ ")"
@@ -142,6 +144,12 @@ let () =
 
   test_lazy ~verbose:false test_fact_l;
   test_strict ~verbose:false test_fact_s;
+  printf "\nTesting Question 5 - E-App1:\n";
+  test_strict ~verbose:true testQ5_EApp1;
+  printf "\nTesting Question 5 - E-App2:\n";
+  test_strict ~verbose:true testQ5_EApp2;
+  printf "\nTesting Question 5 - E-AppAbs:\n";
+  test_strict ~verbose:true testQ5_EAppAbs;
   test_normal ~verbose:false test_fact_l;
   test_normal ~verbose:false test_fact_s
   
