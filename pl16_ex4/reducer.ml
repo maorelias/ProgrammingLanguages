@@ -54,12 +54,11 @@ let reduce_strict term = function
 			| Some t1'' -> Some(Application(t1'',t2))
 			| None -> let t2' = reduce_strict t2 in(
 			match t2' with
-			| Some t2'' -> Some(Application(t1,t2'')
+			| Some t2'' -> Some(Application(t1,t2''))
 			| None -> match t1 with
 			| Abstraction(x,term_3) -> Some(substitute x t2 term_3)
 			| _ -> None
 			))
-	)
 	| _ -> None
 							
 			
