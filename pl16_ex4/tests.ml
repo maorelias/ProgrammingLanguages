@@ -93,6 +93,12 @@ let testQ1_4 = "y\n(\\x. x)((\\y. y)(\\z. z))z\nlet x = (\\x. x) in ((\\y. y) (\
 let testQ5_EApp1 = "let a = ((\\x. y)(\\w. z)) in (a u)"
 let testQ5_EAppAbs = "((\\x. (x x))(\\y. y))"
 let testQ5_EApp2 = "((\\x. x)((\\y. y)t))"
+let testQ5_EAbs = "(\\x.((\\y.y)t))"
+
+let testQ6_EApp2 = "(x ((\\y. y)t))"
+let testQ6_EAbs = "(\\x.((\\y.y)t))"
+let testQ6_EApp1 = "let a = ((\\x. y)(\\w. z)) in (a u)"
+let testQ6_EAppAbs = "((\\x. (x x))(\\y. y))"
 
 let rec print_term = function
   | Variable id -> "Variable(" ^ id ^ ")"
@@ -150,6 +156,16 @@ let () =
   test_strict ~verbose:true testQ5_EApp2;
   printf "\nTesting Question 5 - E-AppAbs:\n";
   test_strict ~verbose:true testQ5_EAppAbs;
+  printf "\nTesting Question 5 - E-Abs:\n";
+  test_strict ~verbose:true testQ5_EAbs;
+  printf "\nTesting Question 6 - E-App1:\n";
+  test_lazy ~verbose:true testQ6_EApp1;
+  printf "\nTesting Question 6 - E-App2:\n";
+  test_lazy ~verbose:true testQ6_EApp2;
+  printf "\nTesting Question 6 - E-AppAbs:\n";
+  test_lazy ~verbose:true testQ6_EAppAbs;
+  printf "\nTesting Question 6 - E-Abs:\n";
+  test_lazy ~verbose:true testQ6_EAbs;
   test_normal ~verbose:false test_fact_l;
   test_normal ~verbose:false test_fact_s
   
