@@ -47,3 +47,24 @@ let rec substitute (x:string) t1 t2 =
 	  )
 	  else Abstraction (y, (substitute x t1 term))
     )
+	
+	
+let reduce_strict term = function
+	| Variable var -> None
+	| Abstraction(x,y) -> None
+	| Application(Abstraction(x,term_1),Abstraction(y,term_2)) -> 
+								Some(substitute x Abstraction(y, term_2) term1)
+	| Application(t1,t2) -> let t1' = reduce_strict t1 in (
+			match t1' with
+			| Some t1'' -> Some(Application(t1'',t2))
+			| None -> let t2' = reduce_strict t2 in(
+			match t2' with
+			| Some t2'' -> Some(Application(t1,t2'')
+			| None -> match t1 with
+			| Abstraction(x,term_3) -> Some(substitute x t2 term_3)
+			| _ -> None
+			))
+	)
+							
+							
+
