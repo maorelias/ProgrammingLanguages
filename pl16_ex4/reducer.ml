@@ -52,8 +52,6 @@ let rec substitute (x:string) t1 t2 =
 let reduce_strict term = function
 	| Variable var -> None
 	| Abstraction(x,y) -> None
-	| Application(Abstraction(x,term_1),Abstraction(y,term_2)) -> 
-								Some(substitute x Abstraction(y, term_2) term1)
 	| Application(t1,t2) -> let t1' = reduce_strict t1 in (
 			match t1' with
 			| Some t1'' -> Some(Application(t1'',t2))
