@@ -67,3 +67,11 @@ let parse s =
 	      		match ts with
 	      		| [] -> t1
 	      		| _ -> raise (SyntaxError "Unexpected input.\n")
+	
+		
+let rec format_term_conv = function
+  | Variable var ->  var 
+  | Abstraction(s,t1) -> "\\" ^ s ^ "." ^ (format_term_conv t1)
+  | Application(t1, t2) -> (format_term_conv t1) ^ " " ^ (format_term_conv t2) 		
+		
+		
