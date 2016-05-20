@@ -90,6 +90,11 @@ let and = (\\b.(\\c. ((b c) fls))) in
 let testQ1_3 = "y"
 let testQ1_4 = "y\n(\\x. x)((\\y. y)(\\z. z))z\nlet x = (\\x. x) in ((\\y. y) (\\z. x))"
 
+let testQ2_1 = "(\\x.t)"
+let testQ2_2 = "((x y) z)"
+let testQ2_3 = "(\\x.(\\y.(\\z.((((w x) y) z)u))))"
+let testQ2_4 = "(\\x.(\\y.(\\z.((x y) z))))"
+
 let testQ5_EApp1 = "let a = ((\\x. y)(\\w. z)) in (a u)"
 let testQ5_EAppAbs = "((\\x. (x x))(\\y. y))"
 let testQ5_EApp2 = "((\\x. x)((\\y. y)t))"
@@ -129,6 +134,18 @@ let test_all ~verbose s =
   test_normal ~verbose s
 
 
+let rec printSet set = 
+	if StringSet.is_empty set = false then let x = StringSet.choose set in (
+			let s' = StringSet.remove x set in(
+				printf "%s" x;
+				if StringSet.is_empty s' = false then printf ", "; printSet s';
+
+			)
+	
+	)
+	else printf ""
+	
+	
 let () =
   test_all ~verbose:true test_and_1;
   test_all ~verbose:true test_and_2;
@@ -160,6 +177,26 @@ let () =
 		  call_parse_term l1 in call_parse_term l;
 	
 
+  printf "\nTesting Question 2:\n";	
+  printf "FV(%s) = " (testQ2_1);
+  printf "{";
+  testQ2_1 |> parse |> fv |> printSet; 
+  printf "}\n";
+  
+  printf "FV(%s) = " (testQ2_2);
+  printf "{";
+  testQ2_2 |> parse |> fv |> printSet; 
+  printf "}\n";
+  printf "FV(%s) = " (testQ2_3);
+  printf "{";
+  testQ2_3 |> parse |> fv |> printSet; 
+  printf "}\n";
+  
+  printf "FV(%s) = " (testQ2_4);
+  printf "{";
+  testQ2_4 |> parse |> fv |> printSet; 
+  printf "}\n\n";
+	
   printf "\nTesting Question 5 - E-App1:\n";
   test_strict ~verbose:false testQ5_EApp1;
   printf "\nTesting Question 5 - E-App2:\n";
