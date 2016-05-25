@@ -110,6 +110,12 @@ let testQ7_EAbs = "(\\x.((\\y.y)((\\z.z)t)))"
 let testQ7_EApp1 = "let a = ((\\x. y)(\\w. z)) in (a u)"
 let testQ7_EAppAbs = "((\\x. (x x))(\\y. y))"
 
+let testQ9_1 = "\\x. \\y. \\z. x y z"
+let testQ9_2 = "x y z"
+let testQ9_3 = "(let a = ((\\x. y)(\\w. z)) in (a u))"
+let testQ9_4 = "x (y z)"
+let testQ9_5 = "(x y z) (a b c)"
+
 let testQ10_abs = "(\\x.(\\y.(\\z.((x y) z))))"
 let testQ10_app = "(x y)"
 let testQ10_var = "(x)"
@@ -197,6 +203,16 @@ let () =
   testQ2_4 |> parse |> fv |> printSet; 
   printf "}\n\n";
 	
+  printf "\nTesting Question 4:\n";
+  printf "substitute x y x\n";
+  printf "%s\n" (format_term (substitute "x" (parse "y") (parse "x")));
+  printf "substitute x y (\\x. x)\n";
+  printf "%s\n" (format_term (substitute "x" (parse "y") (parse "(\\x. x)")));
+  printf "substitute x y \\z. (z x)\n";
+  printf "%s\n" (format_term (substitute "x" (parse "y") (parse "(\\z. (z x))")));
+  printf "substitute x y ((\\x. (x z)) (\\z. (z x)))\n";
+  printf "%s\n" (format_term (substitute "x" (parse "y") (parse "((\\x. (x z)) (\\z. (z x)))")));
+  
   printf "\nTesting Question 5 - E-App1:\n";
   test_strict ~verbose:false testQ5_EApp1;
   printf "\nTesting Question 5 - E-App2:\n";
@@ -234,5 +250,30 @@ let () =
   
   printf "Reformatting term %s to string format  by conventions:\n" testQ10_var;
   printf "%s\n\n" (format_term_conv (parse testQ10_var));
+
+  printf "\nTesting Question 9:\n";
+  printf "Parsing string: %s:\n" testQ9_1;
+  printf "%s\n" (print_term (parse_conv testQ9_1));
+  printf "Reformatting term to string format:\n";
+  printf "%s\n\n" (format_term (parse_conv testQ9_1));
+
+  printf "Parsing string: %s:\n" testQ9_2;
+  printf "%s\n" (print_term (parse_conv testQ9_2));
+  printf "Reformatting term to string format:\n";
+  printf "%s\n\n" (format_term (parse_conv testQ9_2));
   
+  printf "Parsing string: %s:\n" testQ9_3;
+  printf "%s\n" (print_term (parse_conv testQ9_3));
+  printf "Reformatting term to string format:\n";
+  printf "%s\n\n" (format_term (parse_conv testQ9_3));
+  
+  printf "Parsing string: %s:\n" testQ9_4;
+  printf "%s\n" (print_term (parse_conv testQ9_4));
+  printf "Reformatting term to string format:\n";
+  printf "%s\n\n" (format_term (parse_conv testQ9_4));
+  
+  printf "Parsing string: %s:\n" testQ9_5;
+  printf "%s\n" (print_term (parse_conv testQ9_5));
+  printf "Reformatting term to string format:\n";
+  printf "%s\n\n" (format_term (parse_conv testQ9_5));
   
