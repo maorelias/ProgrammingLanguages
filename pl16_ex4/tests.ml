@@ -117,6 +117,7 @@ let testQ9_4 = "x (y z)"
 let testQ9_5 = "(x y z) (a b c)"
 
 let testQ10_abs = "(\\x.(\\y.(\\z.((x y) z))))"
+let testQ10_app_abs = "((\\x.(\\y.(\\z.((x y) z))))(\\t.t))"
 let testQ10_app = "(x y)"
 let testQ10_var = "(x)"
 
@@ -250,7 +251,10 @@ let () =
   
   printf "Reformatting term %s to string format  by conventions:\n" testQ10_var;
   printf "%s\n\n" (format_term_conv (parse testQ10_var));
-
+  
+  printf "Reformatting term %s to string format  by conventions:\n" testQ10_app_abs;
+  printf "%s\n\n" (format_term_conv (parse testQ10_app_abs));
+  
   printf "\nTesting Question 9:\n";
   printf "Parsing string: %s:\n" testQ9_1;
   printf "%s\n" (print_term (parse_conv testQ9_1));

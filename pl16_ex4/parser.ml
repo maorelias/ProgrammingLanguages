@@ -72,7 +72,9 @@ let parse s =
 let rec format_term_conv = function
   | Variable var ->  var 
   | Abstraction(s,t1) -> "\\" ^ s ^ "." ^ (format_term_conv t1)
-  | Application(t1, t2) -> (format_term_conv t1) ^ " " ^ (format_term_conv t2) 	
+  | Application(t1, t2) -> match t1 with
+			| Abstraction(id,t) ->  "(" ^ (format_term_conv t1) ^ ")" ^ " " ^ "(" ^ (format_term_conv t2) ^ ")"
+			| _ -> (format_term_conv t1)  ^ " " ^ (format_term_conv t2)
   
 let get_first lst =
 	match lst with
