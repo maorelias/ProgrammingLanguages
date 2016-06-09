@@ -19,18 +19,28 @@ var fibonacci = (function () {
 // is memo live in memory here?
 
 
-//
-// ADD YOUR CODE HERE FOR DEFINING MEMOIZE, AND THEN UNCOMMENT THE
-// CODE BELOW
-//
+var memoize = function(f){
+	var mem = (function(){	
+			  var memo = [];
+			  var func = function(n) {			  
+				var result = memo[n];
+				if (typeof(result) === "undefined") {
+					result = f(n);
+					memo[n] = result;
+				}
+				 return result;
+			  };
+              
+              return func;
+	})();	
+	return mem;
+};
 
 
-
-/* UNCOMMENT AFTER YOU'VE IMPLEMENTED MEMOIZE
 
 var cool_fibonacci = memoize(function(n) {
     return (n===0 || n === 1) ? n : cool_fibonacci(n-1) + cool_fibonacci(n-2);
 });
 console.log(cool_fibonacci(100) + " wow, this was fast!");
 
-*/
+
