@@ -56,7 +56,32 @@ function nxt() {
         $(this).addClass("mine");
     } else {
         $(this).text(value);
-        /* ADD YOUR CODE HERE */
+        if (value == 0) {
+            colwise(row);
+            function colwise(row) {
+                if (col > 0) ifZeroCallNext(row, col-1);
+                if (col < SZ-1) ifZeroCallNext(row, col+1);
+            }
+            if (row > 0) {
+                ifZeroCallNext(row-1, col);
+                colwise(row-1);
+            }
+            if (row < SZ-1) {
+                ifZeroCallNext(row+1, col);
+                colwise(row+1);
+            }
+        }
+      }
+}
+
+function ifZeroCallNext(row, col) {
+    var value = around(row, col);
+    if (value == 0) {
+        var elem = get_cell(row, col);
+        if (is_cell_hidden(elem)) {
+			alert("true");
+            elem.fadeIn(nxt);
+        }
     }
 }
 
