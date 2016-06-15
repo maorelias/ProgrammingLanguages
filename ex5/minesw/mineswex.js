@@ -79,7 +79,6 @@ function ifZeroCallNext(row, col) {
     if (value == 0) {
         var elem = get_cell(row, col);
         if (is_cell_hidden(elem)) {
-			alert("true");
             elem.fadeIn(nxt);
         }
     }
